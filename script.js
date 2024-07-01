@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     createCalendar();
+    loadData();
     displaySummary();
 });
 
@@ -24,9 +25,6 @@ function createCalendar() {
         `;
         calendar.appendChild(dayDiv);
     }
-
-    // Load saved data
-    loadData();
 }
 
 function calculatePay() {
@@ -41,9 +39,6 @@ function calculatePay() {
     }
 
     let totalHours = 0;
-    let weeklyHours = 0;
-    let weeklyPay = 0;
-    let monthlyPay = 0;
     let weeklyPayArr = [];
     const daysInWeek = 7;
     
@@ -64,8 +59,8 @@ function calculatePay() {
         }
     }
 
-    weeklyPay = weeklyPayArr.reduce((acc, curr) => acc + curr, 0) / weeklyPayArr.length;
-    monthlyPay = weeklyPayArr.reduce((acc, curr) => acc + curr, 0);
+    const weeklyPay = weeklyPayArr.reduce((acc, curr) => acc + curr, 0) / weeklyPayArr.length;
+    const monthlyPay = weeklyPayArr.reduce((acc, curr) => acc + curr, 0);
     
     document.getElementById('dailyPay').innerText = `Daily Pay: $${(wage).toFixed(2)}`;
     document.getElementById('weeklyPay').innerText = `Average Weekly Pay: $${(weeklyPay).toFixed(2)}`;
